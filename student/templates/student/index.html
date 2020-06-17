@@ -1,0 +1,50 @@
+{% extends 'student/base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-4">
+        <h4 class=" text-center alert alert-info"> Add New Student</h4>
+        <form class="" method="POST" action="">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Add" class="btn btn-success">
+        </form>
+    </div>
+
+    <div class="col-sm-7 offset-1">
+        <h4 class=" text-center alert alert-info"> Show Student info</h4>
+        {% if stud %}
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Firstname</th>
+                    <th scope="col">Lastname</th>
+                    <th scope="col">Email</th>
+                    <th class="text-center" colspan="2" scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for st in stud %}
+                <tr>
+                    <th scope="col">{{st.id}}</th>
+                    <td>{{st.firstname}}</td>
+                    <td>{{st.lastname}}</td>
+                    <td>{{st.email}}</td>
+                    <td><a href="{% url 'edit' st.id %}" class="btn btn-warning">Edit</a></td>
+
+                    <td>
+                        <form action="{% url 'delete' st.id %}" method="post" class="">
+                            {% csrf_token %}
+                            <input type="submit" value="Delete" class="btn btn-danger">
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <h2 class="">No Data</h2>
+        {% endif%}
+    </div>
+</div>
+{% endblock content %}

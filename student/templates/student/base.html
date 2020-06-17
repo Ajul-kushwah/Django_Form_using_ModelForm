@@ -1,0 +1,19 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crud Operation by ModelForm</title>
+    <link rel="stylesheet" href="{% static 'student/css/bootstrap.css'%}"></link>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center alert alert-danger">Function Based View ModelForm CRUD Project</h2>
+        {% block content %}
+        {% endblock content %}
+    </div>
+
+    <script src="{% static 'student/js/bootstrap.js'%}"></script>
+</body>
+</html>
